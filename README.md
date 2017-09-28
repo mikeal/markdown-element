@@ -55,6 +55,7 @@ Example:
   // this will show up withou syntax highlights.
   ```
 </mark-down>
+```
 
 ### Bundling
 
