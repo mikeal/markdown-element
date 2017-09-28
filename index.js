@@ -1,11 +1,15 @@
 const ZComponent = require('zcomponent')
 const marked = require('marked')
 const loadcss = require('loadcss')
-const highlight = require('highlight.js')
+const highlight = require('./highlight.min.js')
 
 marked.setOptions({
   highlight: code => highlight.highlightAuto(code).value
 })
+
+let highlightCss = '//cdn.jsdelivr.net/gh/highlightjs/cdn-release@latest/build/styles/default.min.css'
+
+loadcss(highlightCss)
 
 const clean = str => {
   let split = str.split('\n')
