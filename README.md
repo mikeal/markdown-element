@@ -1,5 +1,7 @@
 # Markdown Element
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mikeal/markdown-element.svg)](https://greenkeeper.io/)
+
 HTML Element for markdown content.
 
 <p>
