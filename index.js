@@ -2,6 +2,7 @@ const ZComponent = require('zcomponent')
 const marked = require('marked')
 const loadcss = require('loadcss')
 const highlight = require('./highlight.min.js')
+// const highlight = require('highlight.js')
 
 marked.setOptions({
   highlight: code => highlight.highlightAuto(code).value
@@ -31,14 +32,13 @@ const clean = str => {
   }).join('\n')
 }
 
-const markedProperties = [
-  'gfm',
-  'tables',
-  'breaks',
-  'pedantic',
-  'smartLists',
-  'smartypants'
-]
+function toggleAttribute (el, attr, isOn) {
+  if (isOn) {
+    el.setAttribute(attr, '')
+  } else {
+    el.removeAttribute(attr)
+  }
+}
 
 class MarkdownElement extends ZComponent {
   constructor () {
@@ -47,6 +47,28 @@ class MarkdownElement extends ZComponent {
       this.render()
     }, 0)
   }
+
+  get noGFM () { return this.hasAttribute('nogfm') }
+  set noGFM (value) { toggleAttribute(this, 'nogfm', value) }
+
+  get noTables () { return this.hasAttribute('notables') }
+  set noTables (value) { toggleAttribute(this, 'notables', value) }
+
+  get breaks () { return this.hasAttribute('breaks') }
+  set breaks (value) { toggleAttribute(this, 'breaks', value) }
+
+  get noHighlight () { return this.hasAttribute('nohighlight') }
+  set noHighlight (value) { toggleAttribute(this, 'nohighlight', value) }
+
+  get pedantic () { return this.hasAttribute('pedantic') }
+  set pedantic (value) { toggleAttribute(this, 'pedantic', value) }
+
+  get noSmartLists () { return this.hasAttribute('nosmartlists') }
+  set noSmartLists (value) { toggleAttribute(this, 'nosmartlists', value) }
+
+  get smartyPants () { return this.hasAttribute('smartypants') }
+  set smartyPants (value) { toggleAttribute(this, 'smartypants', value) }
+
   render () {
     if (this._rendering) return this._rendering
     // clear old render
@@ -66,20 +88,18 @@ class MarkdownElement extends ZComponent {
       }
 
       let opts = {
-        gfm: true,
-        tables: true,
-        breaks: false,
-        pedantic: false,
+        gfm: !this.noGFM,
+        tables: !this.noTables,
+        breaks: this.breaks,
+        pedantic: this.pedantic,
+        highlight: !this.noHighlight,
         sanitize: false,
-        smartLists: true,
-        smartypants: false
+        smartLists: !this.noSmartLists,
+        smartypants: this.smartyPants
       }
-      markedProperties.forEach(key => {
-        if (this.getAttribute(key)) {
-          opts[key] = JSON.parse(this.getAttribute(key))
-        }
-      })
-      if (this.getAttribute('highlight') === 'false') opts.highlight = false
+      if (opts.highlight) {
+        delete opts.highlight
+      }
       render.innerHTML = marked(clean(this.textContent), opts)
     })
     return this._rendering
