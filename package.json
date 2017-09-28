@@ -1,0 +1,44 @@
+{
+  "name": "markdown-element",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "commit": "git-cz",
+    "test": "standard",
+    "start": "budo dist.js:bundle.js",
+    "precommit": "npm test",
+    "prepush": "npm test",
+    "prepublishOnly": "mkdir -p dist && browserify dist.js > dist/markdown-element.js && cat dist/markdown-element.js | minify > dist/markdown-element.min.js",
+    "commitmsg": "validate-commit-msg",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "standard": {
+    "ignore": [
+      "dist"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "keywords": [],
+  "author": "Mikeal Rogers <mikeal.rogers@gmail.com> (http://www.mikealrogers.com)",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "highlight.js": "^9.12.0",
+    "loadcss": "0.0.2",
+    "marked": "^0.3.6",
+    "zcomponent": "^1.0.4"
+  },
+  "devDependencies": {
+    "babel-minify": "^0.2.0",
+    "browserify": "^14.4.0",
+    "budo": "^10.0.4",
+    "husky": "^0.14.3",
+    "load-js": "^2.0.0",
+    "standard": "^10.0.3",
+    "semantic-release": "^8.0.3"
+  }
+}
