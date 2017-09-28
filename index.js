@@ -2,6 +2,7 @@ const ZComponent = require('zcomponent')
 const marked = require('marked')
 const loadcss = require('loadcss')
 const highlight = require('./highlight.min.js')
+// const highlight = require('highlight.js')
 
 marked.setOptions({
   highlight: code => highlight.highlightAuto(code).value
@@ -95,6 +96,9 @@ class MarkdownElement extends ZComponent {
         sanitize: false,
         smartLists: !this.noSmartLists,
         smartypants: this.smartyPants
+      }
+      if (opts.highlight) {
+        delete opts.highlight
       }
       render.innerHTML = marked(clean(this.textContent), opts)
     })
