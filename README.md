@@ -47,13 +47,10 @@ The following element attributes can be used to change the render settings.
 Example:
 
 ```html
-<mark-down highlight=false>
-  # h1
+<mark-down pedantic=true>
+    # h1
 
-  ```javascript
-  const highlights = false
-  // this will show up withou syntax highlights.
-  ```
+    * test
 </mark-down>
 ```
 
