@@ -32,26 +32,33 @@ Usage:
 </body>
 ```
 
-## Attributes
+## Attributes/properties
 
-The following element attributes can be used to change the render settings.
+The following element properties can be used to change the render settings. They can be set either from JavaScript or from HTML.
 
-* **gfm**: defaults to true. Enable GitHub flavored markdown.
-* **tables**: defaults to true. Enable GFM tables. This option requires the gfm option to be true.
-* **breaks**: defaults to false. Enable GFM line breaks. This option requires the gfm option to be true.
-* **highlight**: defaults to true. Enables syntax highlighting.
-* **pedantic**: defaults to false. Conform to obscure parts of markdown.pl as much as possible. Don't fix any of the original markdown bugs or poor behavior.
-* **smartLists**: defaults to true. Use smarter list behavior than the original markdown. May eventually be default with the old behavior moved into pedantic.
-* **smartypants**: defaults to false. Use "smart" typograhic punctuation for things like quotes and dashes.
+* **noGFM**: Disables GitHub flavored markdown (GFM).
+* **noTables**: Disables GFM tables. This has no effect if `noGFM` is true.
+* **breaks**: Enable GFM line breaks. This has no effect if `noGFM` is true.
+* **noHighlight**: Disables syntax highlighting.
+* **pedantic**: Conform to obscure parts of markdown.pl as much as possible. Don't fix any of the original markdown bugs or poor behavior.
+* **noSmartLists**: Disable smarter list behavior than the original markdown. May eventually be default with the old behavior moved into pedantic.
+* **smartyPants**: Use "smart" typograhic punctuation for things like quotes and dashes.
 
-Example:
+Examples:
 
 ```html
-<mark-down pedantic=true>
+<mark-down notables pedantic>
     # h1
 
     * test
 </mark-down>
+```
+
+```js
+let marked = document.createElement('mark-down')
+marked.noGFM = true;
+marked.smartyPants = true;
+document.body.appendChild(marked);
 ```
 
 ### Bundling
