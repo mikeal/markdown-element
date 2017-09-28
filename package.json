@@ -1,6 +1,6 @@
 {
   "name": "markdown-element",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -36,9 +36,15 @@
     "babel-minify": "^0.2.0",
     "browserify": "^14.4.0",
     "budo": "^10.0.4",
+    "cz-conventional-changelog": "^2.0.0",
     "husky": "^0.14.3",
     "load-js": "^2.0.0",
+    "semantic-release": "^8.0.3",
     "standard": "^10.0.3",
-    "semantic-release": "^8.0.3"
+    "validate-commit-msg": "^2.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikeal/markdown-element.git"
   }
 }

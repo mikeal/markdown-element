@@ -51,7 +51,7 @@ class MarkdownElement extends ZComponent {
 
       // TODO: convert all this CSS to slotted CSS.
       let css = this.getAttribute('loadcss') || 'default.css'
-      loadcss(`https://cdn.jsdelivr.net/npm/highlight.js@latest/styles/`+css)
+      loadcss(`https://cdn.jsdelivr.net/npm/highlight.js@latest/styles/` + css)
 
       let render = this.querySelector('[slot="render"]')
       if (!render) {
