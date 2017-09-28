@@ -2,7 +2,6 @@ const ZComponent = require('zcomponent')
 const marked = require('marked')
 const loadcss = require('loadcss')
 const highlight = require('./highlight.min.js')
-// const highlight = require('highlight.js')
 
 marked.setOptions({
   highlight: code => highlight.highlightAuto(code).value
@@ -38,14 +37,13 @@ function toggleAttribute (el, attr, isOn) {
   } else {
     el.removeAttribute(attr)
   }
+  el.render()
 }
 
 class MarkdownElement extends ZComponent {
   constructor () {
     super()
-    setTimeout(() => {
-      this.render()
-    }, 0)
+    this.render()
   }
 
   get noGFM () { return this.hasAttribute('nogfm') }
@@ -73,34 +71,38 @@ class MarkdownElement extends ZComponent {
     if (this._rendering) return this._rendering
     // clear old render
     this._rendering = new Promise(resolve => {
-      this._rendering = null
+      setTimeout(() => {
+        this._rendering = null
+        // TODO: convert all this CSS to slotted CSS.
+        let css = this.getAttribute('loadcss') || 'default.css'
+        loadcss(`https://cdn.jsdelivr.net/npm/highlight.js@latest/styles/` + css)
 
-      // TODO: convert all this CSS to slotted CSS.
-      let css = this.getAttribute('loadcss') || 'default.css'
-      loadcss(`https://cdn.jsdelivr.net/npm/highlight.js@latest/styles/` + css)
+        let render = this.querySelector('[slot="render"]')
+        if (!render) {
+          render = document.createElement('div')
+          render.classList.add('markdown-render')
+          render.setAttribute('slot', 'render')
+          this.appendChild(render)
+        }
 
-      let render = this.querySelector('[slot="render"]')
-      if (!render) {
-        render = document.createElement('div')
-        render.classList.add('markdown-render')
-        render.setAttribute('slot', 'render')
+        let opts = {
+          gfm: !this.noGFM,
+          tables: !this.noTables,
+          breaks: this.breaks,
+          pedantic: this.pedantic,
+          highlight: !this.noHighlight,
+          sanitize: false,
+          smartLists: !this.noSmartLists,
+          smartypants: this.smartyPants
+        }
+        if (opts.highlight) {
+          delete opts.highlight
+        }
+        this.removeChild(render)
+        render.innerHTML = marked(clean(this.textContent), opts)
         this.appendChild(render)
-      }
-
-      let opts = {
-        gfm: !this.noGFM,
-        tables: !this.noTables,
-        breaks: this.breaks,
-        pedantic: this.pedantic,
-        highlight: !this.noHighlight,
-        sanitize: false,
-        smartLists: !this.noSmartLists,
-        smartypants: this.smartyPants
-      }
-      if (opts.highlight) {
-        delete opts.highlight
-      }
-      render.innerHTML = marked(clean(this.textContent), opts)
+        resolve(render)
+      }, 0)
     })
     return this._rendering
   }
