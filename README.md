@@ -42,7 +42,7 @@ The following element properties can be used to change the render settings. They
 * **noHighlight**: Disables syntax highlighting.
 * **pedantic**: Conform to obscure parts of markdown.pl as much as possible. Don't fix any of the original markdown bugs or poor behavior.
 * **noSmartLists**: Disable smarter list behavior than the original markdown. May eventually be default with the old behavior moved into pedantic.
-* **smartyPants**: Use "smart" typograhic punctuation for things like quotes and dashes.
+* **smartyPants**: Use "smart" typographic punctuation for things like quotes and dashes.
 
 Examples:
 
