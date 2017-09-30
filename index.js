@@ -52,6 +52,9 @@ class MarkdownElement extends ZComponent {
   get noTables () { return this.hasAttribute('notables') }
   set noTables (value) { toggleAttribute(this, 'notables', value) }
 
+  get noSanitize () { return this.hasAttribute('noSanitize') }
+  set noSanitize (value) { toggleAttribute(this, 'noSanitize', value) }
+
   get breaks () { return this.hasAttribute('breaks') }
   set breaks (value) { toggleAttribute(this, 'breaks', value) }
 
@@ -91,7 +94,7 @@ class MarkdownElement extends ZComponent {
           breaks: this.breaks,
           pedantic: this.pedantic,
           highlight: !this.noHighlight,
-          sanitize: false,
+          sanitize: !this.noSanitize,
           smartLists: !this.noSmartLists,
           smartypants: this.smartyPants
         }
