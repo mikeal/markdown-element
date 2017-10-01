@@ -12,7 +12,7 @@ Usage:
 
 ```html
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/markdown-element@latest/dist/markdown-elements.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-element/dist/markdown-element.min.js"></script>
   <mark-down>
     ## h2
 
