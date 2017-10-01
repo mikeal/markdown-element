@@ -9,7 +9,7 @@
     "start": "budo dist.js:bundle.js",
     "precommit": "npm test",
     "prepush": "npm test",
-    "prepublishOnly": "mkdir -p dist && browserify dist.js > dist/markdown-element.js && cat dist/markdown-element.js | minify > dist/markdown-element.min.js",
+    "prepublishOnly": "distjs",
     "commitmsg": "validate-commit-msg",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
@@ -27,6 +27,7 @@
   "author": "Mikeal Rogers <mikeal.rogers@gmail.com> (http://www.mikealrogers.com)",
   "license": "Apache-2.0",
   "dependencies": {
+    "distjs": "^1.0.0",
     "loadcss": "0.0.2",
     "marked": "^0.3.6",
     "zcomponent": "^1.0.4"
