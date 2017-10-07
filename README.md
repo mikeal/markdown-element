@@ -56,9 +56,24 @@ Examples:
 
 ```js
 let marked = document.createElement('mark-down')
-marked.noGFM = true;
-marked.smartyPants = true;
-document.body.appendChild(marked);
+marked.noGFM = true
+marked.smartyPants = true
+document.body.appendChild(marked)
+```
+
+## Rendering
+
+The rendered markdown is placed in a `<render>` element.
+
+```html
+<mark-down>
+  <render>
+    <h1>h1</h1>
+    <ul>
+      <li>test</li>
+    </ul>
+  </render>
+</mark-down>
 ```
 
 ### Bundling

@@ -30,7 +30,7 @@
     "distjs": "^1.0.0",
     "loadcss": "0.0.2",
     "marked": "^0.3.6",
-    "zcomponent": "^1.0.4"
+    "rza": "^1.0.0"
   },
   "devDependencies": {
     "babel-minify": "^0.2.0",
