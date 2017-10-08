@@ -81,3 +81,9 @@ The rendered markdown is placed in a `<render>` element.
 If you want to build the component into the JavaScript bundle of your app
 you can do so easily, but you'll need to handle loading a WebComponents
 polyfill on your own.
+
+## Why is it called GZA?
+
+Cause GZA the **genius!**
+
+![Liquid Swords](https://file-vqxdxybyne.now.sh)
