@@ -1,4 +1,4 @@
-const RZA = require('rza')
+const gza = require('gza')
 const marked = require('marked')
 const loadcss = require('loadcss')
 const highlight = require('./highlight.min.js')
@@ -33,40 +33,40 @@ const clean = str => {
 
 const cssCDN = `https://cdn.jsdelivr.net/npm/highlight.js@latest/styles/`
 
-class MarkdownElement extends RZA {
-  get defaults () {
-    return {
-      noGFM: false,
-      noTables: false,
-      breaks: false,
-      pedantic: false,
-      noHighlight: false,
-      noSanitize: false,
-      noSmartLists: false,
-      smartypants: false,
-      loadcss: 'default.css'
-    }
-  }
+const render = (settings, innerHTML) => {
+  loadcss(cssCDN + settings.loadcss)
+  // TODO: slot css w/ a transform.
 
-  render (settings, innerHTML) {
-    loadcss(cssCDN + settings.loadcss)
-    // TODO: slot css w/ a transform.
-
-    let opts = {
-      gfm: !settings.noGFM,
-      tables: !settings.noTables,
-      breaks: settings.breaks,
-      pedantic: settings.pedantic,
-      highlight: !settings.noHighlight,
-      sanitize: !settings.noSanitize,
-      smartLists: !settings.noSmartLists,
-      smartypants: settings.smartyPants
-    }
-    if (opts.highlight) {
-      delete opts.highlight
-    }
-    return marked(clean(innerHTML), opts)
+  let opts = {
+    gfm: !settings.noGFM,
+    tables: !settings.noTables,
+    breaks: settings.breaks,
+    pedantic: settings.pedantic,
+    highlight: !settings.noHighlight,
+    sanitize: !settings.noSanitize,
+    smartLists: !settings.noSmartLists,
+    smartypants: settings.smartyPants
   }
+  if (opts.highlight) {
+    delete opts.highlight
+  }
+  return marked(clean(innerHTML), opts)
 }
 
-window.customElements.define('mark-down', MarkdownElement)
+const defaults = {
+  noGFM: false,
+  noTables: false,
+  breaks: false,
+  pedantic: false,
+  noHighlight: false,
+  noSanitize: false,
+  noSmartLists: false,
+  smartypants: false,
+  loadcss: 'default.css'
+}
+
+module.exports = gza`
+<mark-down ${defaults}>
+  ${render}
+</mark-down>
+`

@@ -28,9 +28,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "distjs": "^1.0.0",
+    "gza": "^1.0.0",
     "loadcss": "0.0.2",
-    "marked": "^0.3.6",
-    "rza": "^1.0.0"
+    "marked": "^0.3.6"
   },
   "devDependencies": {
     "babel-minify": "^0.2.0",
