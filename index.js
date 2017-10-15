@@ -50,6 +50,7 @@ const render = (settings, innerHTML) => {
   if (opts.highlight) {
     delete opts.highlight
   }
+  if (!innerHTML.length) return ''
   return marked(clean(innerHTML), opts)
 }
 
@@ -64,7 +65,6 @@ const defaults = {
   smartypants: false,
   loadcss: 'default.css'
 }
-
 module.exports = gza`
 <mark-down ${defaults}>
   ${render}

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "commit": "git-cz",
-    "test": "standard",
+    "test": "tap tests/test-*.js",
+    "posttest": "standard",
     "start": "budo dist.js:bundle.js",
     "precommit": "npm test",
     "prepush": "npm test",
@@ -28,19 +29,23 @@
   "license": "Apache-2.0",
   "dependencies": {
     "distjs": "^1.0.0",
-    "gza": "^1.0.0",
+    "gza": "^1.3.0",
     "loadcss": "0.0.2",
     "marked": "^0.3.6"
   },
   "devDependencies": {
     "babel-minify": "^0.2.0",
+    "bl": "^1.2.1",
     "browserify": "^14.4.0",
     "budo": "^10.0.4",
+    "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.0.0",
     "husky": "^0.14.3",
     "load-js": "^2.0.0",
+    "puppeteer": "^0.12.0",
     "semantic-release": "^8.0.3",
     "standard": "^10.0.3",
+    "tap": "^10.7.2",
     "validate-commit-msg": "^2.14.0"
   },
   "repository": {
