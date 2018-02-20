@@ -31,7 +31,7 @@
     "distjs": "^1.0.0",
     "gza": "^1.3.0",
     "loadcss": "0.0.2",
-    "marked": "^0.3.6"
+    "marked": "^0.3.16"
   },
   "devDependencies": {
     "babel-minify": "^0.2.0",
