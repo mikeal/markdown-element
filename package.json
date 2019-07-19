@@ -39,7 +39,7 @@
     "browserify": "^14.4.0",
     "budo": "^10.0.4",
     "commitizen": "^2.9.6",
-    "cz-conventional-changelog": "^2.0.0",
+    "cz-conventional-changelog": "^3.0.1",
     "husky": "^0.14.3",
     "load-js": "^2.0.0",
     "puppeteer": "^0.12.0",
