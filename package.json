@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "babel-minify": "^0.2.0",
-    "bl": "^1.2.1",
+    "bl": "^4.0.3",
     "browserify": "^14.4.0",
     "budo": "^10.0.4",
     "commitizen": "^2.9.6",
